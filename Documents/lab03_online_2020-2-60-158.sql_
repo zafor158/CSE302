@@ -1,0 +1,88 @@
+--create table for actors
+
+create table actors (
+id number,
+first_name varchar2(10),
+last_name varchar2 (10),
+gender char(1),
+primary key(id)
+);
+
+--create table for movies
+
+create table movies (
+id number,
+name varchar2(30),
+year number,
+primary key(id)
+);
+
+
+--create table for roles
+
+create table roles (
+actor_id number,
+movie_id number,
+role varchar2(10),
+constraint R_pk primary key(actor_id,movie_id),
+constraint R_fk1 foreign key (actor_id) references actors (id),
+constraint R_fk2  foreign key (movie_id) references movies (id)
+);
+
+--insert data for actors
+
+insert into actors values (2020-2-60-092,'julia','Shatner','M');
+insert into actors values (2020-2-60-095,'Britney','Spear','F');
+insert into actors values (2020-2-60-214,'Jason','Statham','M');
+insert into actors values (2020-2-60-224,'Jasol','Stathami','F');
+insert into actors values (2020-2-60-192,'mily','Shatpur','F');
+
+--insert data for movies
+
+insert into movies values (12345,'Fight Club',1999);
+insert into movies values (12346,'the nun',2000);
+insert into movies values (12347,'Pi',2012);
+insert into movies values (12348,'Kill Bill Vol.1',2004);
+insert into movies values (12349,'Kill Bill Vol.2',2008);
+
+--insert data for roles
+
+insert into roles values (2020-2-60-092,12345,'Capt.James');
+insert into roles Vvalues  (2020-2-60-095,12346,'James');
+insert into roles values  (2020-2-60-214,12347,'Henery');
+insert into roles values  (2020-2-60-224,12348,'Alo');
+insert into roles values  (2020-2-60-192,12349,'moon');
+
+--SINGLE TABLE QUERIES
+--a
+
+select *from actors
+where first_name= 'julia';
+
+--b
+select id, name from movies
+where year between 1994 and 2001;
+
+--c 
+select id from movies
+where name = 'Fight Club';
+
+--MULTITABLE QUERIES
+--a
+select  role from actors a, roles r , movies m
+where (a.id = r.actor_id) and (m.id = r.movie_id)
+and name = 'Fight Club';
+
+
+--b
+select first_name , last_name , role from actors a, roles r , movies m
+where (a.id = r.actor_id) and (m.id = r.movie_id)
+and name= 'Pi' ;
+
+--c
+select first_name , last_name from  actors a, roles r , movies m
+where (a.id = r.actor_id) and (m.id = r.movie_id)
+and name ='Kill Bill Vol.1' And name ='Kill Bill Vol.2';
+
+
+

@@ -1,0 +1,16 @@
+CREATE TABLE PLAYER_IMAGE (
+    playerid number primary key,
+    file_lob BLOB,
+    file_name VARCHAR2(20),
+    file_mimetype VARCHAR2(20),
+    file_updatedate VARCHAR2(20),
+    file_characterset VARCHAR2(20),
+    foreign key (playerid) REFERENCES player
+);
+
+td[headers=image_width] img{
+    width: 75px !important;
+    height: 75px !important;
+    -moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+}

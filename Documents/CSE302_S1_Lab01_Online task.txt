@@ -1,0 +1,27 @@
+1. Create following tables:
+    1. Instructor table:
+	a. id (varchar2): primary key,
+	b. name (varchar2),
+	c. dept_name (varchar2): foreign key from Department Table,
+	d. salary (number): must be greater than 30,000
+
+    2. Department table:
+	a. dept_name (varchar2): primary key,
+	b. building (varchar2): foreign key from Building Table,
+	c. budget (number): must be greater than 1,00,000
+
+    3. Building table:
+	a. building (varchar2): primary key,
+	b. area (number),
+	c. floor (number).
+
+
+2. Write SQL statements tp solve the following queries(Multi-table Queries):
+	a. Find instructor id, name, salary of those who have their departments located in 'Main' building.
+
+	b. Find the department names which are located in a building with more than 2,00,000 square feet area.
+
+	c. Find name and department name of instructors who have departments with budget in between 1,00,000 amd 2,00,000.
+
+	d. Find instructor name, dept name and building of those who gets salary more than 50,000 and their departments are located in a building having less than 2,00,000 square feet area.
+	

@@ -1,0 +1,27 @@
+-- Lab Tasks of Lab 00 (Online)
+
+1. Create a table named Instructor as per the following guideline.
+There will be 4 attributes.
+i) instructor_id - 6 characters long, primary key
+ii) instructor_name - 20 characters long, mandatory
+iii) joining_date - must be after 01 January 2000
+iv) salary - must be more than 50000 and less than 500000
+
+2. Insert the following records in Instructor table
+
+instructor_id    instructor_name    joining_date    salary
+ABC-01		 Alice              01-FEB-2001      120000
+ABC-10           Bob                03-MAR-2002       78000
+ABC-21           Charlie            10-JAN-2000      210000
+
+
+3. Update the salary of Alice to 150000.
+
+4. Show all records of instructor table.
+
+5. Show only name and salary of instructors.
+
+6. Show name and joining date of instructors who get more than 100000.
+
+7. Delete instructor who has id ABC-10.
+

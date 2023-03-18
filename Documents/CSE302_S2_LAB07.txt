@@ -1,0 +1,39 @@
+-- View Creation
+
+
+CREATE VIEW Faculty AS 
+	(SELECT id, name, dept_name
+	FROM instructor);
+	
+CREATE VIEW Student_Count AS
+	(SELECT dept_name, count(*) as num_student
+	FROM Student
+	GROUP BY dept_name);
+	
+CREATE VIEW ST_ENROL_F_09 AS
+	(SELECT DISTINCT name, dept_name
+	FROM Student NATURAL JOIN Takes
+	WHERE semester = 'Fall' and year = 2009);
+	
+INSERT INTO Faculty VALUES ('55555','TBA','Comp. Sci.');
+	
+INSERT INTO ST_ENROL_F_09 VALUES ('Student1','Comp. Sci.');
+
+CREATE USER a identified by cse302;
+
+GRANT CONNECT, CREATE SESSION, UNLIMITED TABLESPACE TO A;
+
+CREATE USER B identified by cse302;
+
+GRANT CONNECT, CREATE SESSION, UNLIMITED TABLESPACE TO B;
+
+CREATE USER C identified by cse302;
+
+GRANT CONNECT, CREATE SESSION, UNLIMITED TABLESPACE TO C;
+
+GRANT SELECT ON Faculty To A; -- cse302_s2_f22
+REVOKE SELECT On Faculty FROM A; -- cse302_s2_f22
+
+GRANT SELECT ON Faculty to B with grant option;
+
+SELECT * FROM USER_TAB_PRIVS;

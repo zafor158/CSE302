@@ -1,0 +1,65 @@
+-- Aggregate Queries
+
+
+-- Find the minimum account balance of all accounts.
+
+SELECT MIN(balance) as MINIMUM_BALANCE
+FROM Account;
+
+-- Find the maximum and sum of balance of all accounts.
+
+SELECT max(balance), sum(balance)
+FROM Account;
+
+-- Find the average balance of accounts opened in 'Perryridge' Branch.
+
+SELECT avg(balance)
+FROM Account
+WHERE branch_name = 'Perryridge';
+
+-- Find numbers of loans approved by each branch.
+SELECT BRANCH_NAME, COUNT(loan_number) AS NUM_OF_LOANS
+FROM Loan
+GROUP BY BRANCH_NAME;
+
+-- Find numbers of loans approved by each branch. Only include
+'Downtown', 'North Town' and 'Perryridge' branch in your result.
+
+SELECT BRANCH_NAME, COUNT(*) AS NUM_OF_LOANS
+FROM Loan
+WHERE BRANCH_NAME IN ('Downtown', 'North Town', 'Perryridge')
+GROUP BY BRANCH_NAME;
+
+SELECT BRANCH_NAME, COUNT(*) AS NUM_OF_LOANS
+FROM Loan
+GROUP BY BRANCH_NAME
+HAVING BRANCH_NAME IN ('Downtown', 'North Town', 'Perryridge');
+
+-- Find the average account balance of all accounts for each branch. 
+Only include those branches where the average balance is at least 600.
+
+SELECT BRANCH_NAME, AVG(balance) as avg_balance
+FROM Account
+GROUP BY BRANCH_NAME
+HAVING AVG(balance) >= 600;
+
+-- Find the average account balance of all accounts for each branch. 
+Only include those branches where the average balance is at least 600.
+Sort the results in alphabetic order of branch name.
+
+SELECT BRANCH_NAME, AVG(balance) as avg_balance
+FROM Account
+GROUP BY BRANCH_NAME
+HAVING AVG(balance) >= 600
+ORDER BY avg_balance;
+
+
+
+
+
+
+
+
+
+
+

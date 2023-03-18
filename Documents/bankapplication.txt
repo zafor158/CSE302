@@ -1,0 +1,22 @@
+create table bankaccount(
+    account_number number(5) primary key,
+    account_name varchar2(20),
+    account_balance number(10,2)
+);
+
+create table bankdeposit(
+    deposit_id number(5) primary key,
+    account_number number(5),
+    deposit_date date,
+    amount number(10,2),
+    foreign key (account_number) references bankaccount
+);
+
+create table bankwithdraw(
+    withdraw_id number(5) primary key,
+    account_number number(5),
+    withdraw_date date,
+    amount number(10,2),
+    foreign key(account_number) references bankaccount
+);
+

@@ -1,0 +1,50 @@
+-- CSE302, SECTION 2
+
+-- Find department-wise average salary of those departments
+-- which have avg. salaries more than the average salary of 
+-- all instrcutors
+
+
+SELECT dept_name, dept_avg_salary
+FROM (SELECT dept_name, avg(salary) as dept_avg_salary
+	 FROM Instructor
+     GROUP BY dept_name) temp1,
+	 (SELECT avg(salary) as overall_avg_salary
+	  FROM Instructor) temp2
+WHERE dept_avg_salary > overall_avg_salary;
+
+-- Find department-wise sum of salaries of those department which have
+-- more than one instructor.
+
+SELECT temp1.dept_name, dept_total_salary
+FROM (SELECT dept_name, sum(salary) as dept_total_salary
+	 FROM Instructor
+     GROUP BY dept_name) temp1,
+	 (SELECT dept_name, count(*) as dept_num_inst
+	 FROM Instructor
+     GROUP BY dept_name) temp2
+WHERE temp1.dept_name = temp2.dept_name and dept_num_inst > 1;
+
+SELECT dept_name, sum(salary) as dept_total_salary
+FROM Instructor
+GROUP BY dept_name
+HAVING count(*) > 1;
+
+-- Find those branches which have total balance 
+-- greater than total loan amount.
+
+SELECT a.branch_name, sum(balance), sum(amount)
+FROM account a, loan l
+WHERE a.branch_name = l.branch_name
+GROUP BY a.branch_name
+HAVING sum(balance) > sum(amount);
+
+
+SELECT t1.branch_name
+FROM (SELECT branch_name, sum(balance) as total_balance
+	  FROM account
+	  GROUP BY branch_name) t1,
+	  (SELECT branch_name, sum(amount) as total_loan
+	  FROM loan
+	  GROUP BY branch_name) t2
+WHERE t1.branch_name = t2.branch_name and total_balance > total_loan;

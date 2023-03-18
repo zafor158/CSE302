@@ -1,0 +1,53 @@
+
+--Task 1
+
+CREATE VIEW CSE_course AS
+	(SELECT course_id, title, credits
+	 FROM course 
+	 WHERE dept_name = 'Comp. Sci.');
+
+--Task 2
+
+CREATE USER U1 identified by cse302;
+
+GRANT CONNECT, CREATE SESSION, UNLIMITED TABLESPACE TO U1;
+
+CREATE USER U2 identified by cse302;
+
+GRANT CONNECT, CREATE SESSION, UNLIMITED TABLESPACE TO U2;
+
+CREATE USER U3 identified by cse302;
+
+GRANT CONNECT, CREATE SESSION, UNLIMITED TABLESPACE TO U3;
+
+--Task 3
+
+GRANT SELECT ON  CSE_course TO U1 with GRANT OPTION;
+
+GRANT SELECT ON  CSE_course TO U2 with GRANT OPTION;
+
+GRANT SELECT ON  CSE302_S2_F22.CSE_course TO U1;
+
+GRANT SELECT ON  CSE302_S2_F22.CSE_course TO U3;
+
+--Task 4
+
+select * from user_tab_privs;
+
+--Task 5
+
+REVOKE SELECT ON CSE_course FROM U1;
+
+select * from user_tab_privs;
+
+--Task 6
+
+ If the user CSE302_S2_F22 revoke the power from U1
+U1 will not be vanished. U2 is generously giving grant access to U1. 
+But if we want to give the power to grant option to users, we'll need to use U2. 
+Since user U1 can't give power to user U3, user U3 will eventually lose its power.
+
+
+
+
+
